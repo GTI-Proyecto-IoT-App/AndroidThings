@@ -1,4 +1,4 @@
-package com.example.raspberry_m5stack.datos.firebase.constants;
+package com.example.raspberry_m5stack.firebase.constants;
 
 public class Constant {
 
@@ -9,6 +9,5 @@ public class Constant {
     public static final String DELETE = "DELETE";
 
 
-    public static final String CONNECTION_ERROR = "ERRORENLACONEXION";
 
 }

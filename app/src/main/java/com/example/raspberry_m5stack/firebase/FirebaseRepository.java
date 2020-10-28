@@ -1,30 +1,20 @@
-package com.example.raspberry_m5stack.datos.firebase;
+package com.example.raspberry_m5stack.firebase;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.util.Log;
 
-import com.example.raspberry_m5stack.datos.firebase.callback.CallBack;
-import com.example.raspberry_m5stack.datos.firebase.callback.FirebaseChildCallBack;
-import com.example.raspberry_m5stack.datos.firebase.constants.Constant;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.example.raspberry_m5stack.firebase.callback.CallBack;
+import com.example.raspberry_m5stack.firebase.constants.Constant;
+import com.example.raspberry_m5stack.model.MedidaBasura;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.MetadataChanges;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.WriteBatch;
 
-import java.util.Map;
+import androidx.annotation.NonNull;
 
 /**
  * @author Ruben Pardo Casanova
@@ -78,7 +68,7 @@ public class FirebaseRepository {
         });
     }
 
-    protected final void fireStoreUpdateHasMap(final DocumentReference documentReference,String field, final Object model, final CallBack callback) {
+    protected final void fireStoreUpdateHasMap(final DocumentReference documentReference, String field, final Object model, final CallBack callback) {
         documentReference.update(field, FieldValue.arrayUnion(model)).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

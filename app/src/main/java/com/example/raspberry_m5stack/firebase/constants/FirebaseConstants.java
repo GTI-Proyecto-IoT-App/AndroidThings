@@ -1,4 +1,4 @@
-package com.example.raspberry_m5stack.datos.firebase.constants;
+package com.example.raspberry_m5stack.firebase.constants;
 
 /**
  * @author Ruben Pardo Casanova

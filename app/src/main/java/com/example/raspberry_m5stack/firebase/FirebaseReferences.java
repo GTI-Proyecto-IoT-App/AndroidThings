@@ -1,4 +1,4 @@
-package com.example.raspberry_m5stack.datos.firebase;
+package com.example.raspberry_m5stack.firebase;
 
 
 import com.google.firebase.firestore.FirebaseFirestore;

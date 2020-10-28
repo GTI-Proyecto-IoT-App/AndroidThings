@@ -1,4 +1,4 @@
-package com.example.raspberry_m5stack.datos.firebase.callback;
+package com.example.raspberry_m5stack.firebase.callback;
 
 /**
  * @author Ruben Pardo Casanova

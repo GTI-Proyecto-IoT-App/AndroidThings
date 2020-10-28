@@ -1,19 +1,17 @@
 package com.example.raspberry_m5stack.repository.impl;
 
-import com.example.raspberry_m5stack.datos.firebase.FirebaseReferences;
-import com.example.raspberry_m5stack.datos.firebase.FirebaseRepository;
-import com.example.raspberry_m5stack.datos.firebase.callback.CallBack;
-import com.example.raspberry_m5stack.datos.firebase.constants.Constant;
+import com.example.raspberry_m5stack.firebase.FirebaseReferences;
+import com.example.raspberry_m5stack.firebase.FirebaseRepository;
+import com.example.raspberry_m5stack.firebase.callback.CallBack;
 import com.example.raspberry_m5stack.model.MedidaBasura;
 import com.example.raspberry_m5stack.repository.MedidaBasuraRepository;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.example.raspberry_m5stack.utility.Utility;
 
-import static com.example.raspberry_m5stack.datos.firebase.constants.FirebaseConstants.CAMPO_MESURA;
-import static com.example.raspberry_m5stack.datos.firebase.constants.FirebaseConstants.TABLA_DISPOSITIVOS;
-import static com.example.raspberry_m5stack.datos.firebase.constants.Constant.SUCCESS;
-import static com.example.raspberry_m5stack.datos.firebase.constants.Constant.FAIL;
+import static com.example.raspberry_m5stack.firebase.constants.Constant.FAIL;
+import static com.example.raspberry_m5stack.firebase.constants.Constant.SUCCESS;
+import static com.example.raspberry_m5stack.firebase.constants.FirebaseConstants.CAMPO_MESURA;
+import static com.example.raspberry_m5stack.firebase.constants.FirebaseConstants.TABLA_DISPOSITIVOS;
 
 
 public class MedidaBasuraImpl extends FirebaseRepository implements MedidaBasuraRepository {
