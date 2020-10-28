@@ -1,4 +1,4 @@
-package com.example.androidthings.model;
+package com.example.raspberry_m5stack.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;

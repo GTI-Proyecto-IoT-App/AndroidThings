@@ -1,4 +1,4 @@
-package com.example.androidthings;
+package com.example.raspberry_m5stack;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.androidthings.model.MedidaBasura;
+import com.example.raspberry_m5stack.firebase.callback.CallBack;
+import com.example.raspberry_m5stack.model.MedidaBasura;
+import com.example.raspberry_m5stack.repository.impl.MedidaBasuraImpl;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private ArduinoUart uart;
+    private MedidaBasuraImpl medidaBasuraRepository;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_main);
         Log.i("TESTING", "Lista de UART disponibles: " + ArduinoUart.disponibles());
         uart = new ArduinoUart("UART0", 115200);
-
+        medidaBasuraRepository = new MedidaBasuraImpl();
         //Log.d(TAG, "Mandado a Arduino: D");
         //uart.escribir("D");
 
@@ -56,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "id de Arduino -> "+medidasB.getId());
                         Log.d(TAG, "tipo  de Arduino -> "+medidasB.getTipoMedida());
                         Log.d(TAG, "valor de Arduino -> "+medidasB.getValor());
+
+                        medidaBasuraRepository.crearMedidaBasura(medidasB, new CallBack() {
+                            @Override
+                            public void onSuccess(Object object) {
+                                Log.d("FIREBASE",object.toString());
+                            }
+
+                            @Override
+                            public void onError(Object object) {
+                                Log.d("FIREBASE",object.toString());
+                            }
+                        });
+
                     }catch (JSONException err){
                         Log.d("Error", err.toString());
                     }
