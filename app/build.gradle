@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.androidthings"
+        applicationId "com.example.raspberry_m5stack"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
@@ -35,5 +35,10 @@ dependencies {
     compileOnly 'com.google.android.things:androidthings:1.0'
     implementation 'com.android.support:multidex:1.0.3'
 
+
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-core'
+    implementation 'com.google.firebase:firebase-firestore'
 
 }

@@ -1,4 +1,4 @@
-package com.example.androidthings;
+package com.example.raspberry_m5stack;
 
 import android.app.Activity;
 import android.util.Log;
