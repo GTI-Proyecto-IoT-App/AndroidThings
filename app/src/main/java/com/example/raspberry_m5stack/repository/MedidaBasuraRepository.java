@@ -4,5 +4,5 @@ import com.example.raspberry_m5stack.firebase.callback.CallBack;
 import com.example.raspberry_m5stack.model.MedidaBasura;
 
 public interface MedidaBasuraRepository {
-    void crearMedidaBasura(MedidaBasura medidaBasura, CallBack callback);
+    void crearMedidaBasura(String id, MedidaBasura medidaBasura, CallBack callback);
 }

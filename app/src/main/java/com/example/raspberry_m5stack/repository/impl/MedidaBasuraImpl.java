@@ -23,11 +23,11 @@ public class MedidaBasuraImpl extends FirebaseRepository implements MedidaBasura
     }
 
     @Override
-    public void crearMedidaBasura(MedidaBasura medidaBasura, final CallBack callback) {
+    public void crearMedidaBasura(String id, MedidaBasura medidaBasura, final CallBack callback) {
         // cogemos el key del document
 
         if(medidaBasura!=null){
-            DocumentReference documentReference = medidaBasuraCollectionReference.document(medidaBasura.getId());
+            DocumentReference documentReference = medidaBasuraCollectionReference.document(id);
 
 
             // intentara crear la medida y al terminar llamará al callback de on succes o error

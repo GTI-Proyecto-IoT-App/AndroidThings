@@ -13,6 +13,8 @@ import com.example.raspberry_m5stack.repository.impl.MedidaBasuraImpl;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 /**
  * Skeleton of an Android Things activity.
  * <p>
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
     private ArduinoUart uart;
     private MedidaBasuraImpl medidaBasuraRepository;
 
+
+    private static final String DELIMITADOR_TIPO_DISPOSITIVO = "%";
+    private static final String DELIMITADOR_MENSAJE_UART = "\\$\\$\\$\\$";
+    private static final String DISPOSITIVO_BASURA = "basura";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,26 +58,18 @@ public class MainActivity extends AppCompatActivity {
             int i =0;
             while(true){
                 String s = uart.leer();
-                String[] res = s.split("\\$\\$\\$\\$");
+                String[] res = s.split(DELIMITADOR_MENSAJE_UART);
                 if (res.length>1){
                     Log.d(TAG, "Recibido de Arduino -> "+i+": "+res[1]);
                     try {
-                        MedidaBasura medidasB = new MedidaBasura(new JSONObject(res[1]));
-                        Log.d(TAG, "id de Arduino -> "+medidasB.getId());
-                        Log.d(TAG, "tipo  de Arduino -> "+medidasB.getTipoMedida());
-                        Log.d(TAG, "valor de Arduino -> "+medidasB.getValor());
+                        JSONObject jsonObject = new JSONObject(res[1]);
+                        String tipoDispositivo = jsonObject.getString("id").split(DELIMITADOR_TIPO_DISPOSITIVO)[1];
 
-                        medidaBasuraRepository.crearMedidaBasura(medidasB, new CallBack() {
-                            @Override
-                            public void onSuccess(Object object) {
-                                Log.d("FIREBASE",object.toString());
-                            }
-
-                            @Override
-                            public void onError(Object object) {
-                                Log.d("FIREBASE",object.toString());
-                            }
-                        });
+                        switch (tipoDispositivo){
+                            case DISPOSITIVO_BASURA:
+                                addMesuraBasura(jsonObject);
+                                break;
+                        }
 
                     }catch (JSONException err){
                         Log.d("Error", err.toString());
@@ -88,6 +87,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Envia peticion de creacion de mesura de basura
+     * @param jsonObject el json object que recibimos del m5 stack
+     * @throws JSONException mal formateo del json
+     */
+    private void addMesuraBasura(JSONObject jsonObject) throws JSONException {
+        MedidaBasura medidasB = new MedidaBasura(jsonObject);
+        String id = jsonObject.getString("id");
+
+        medidaBasuraRepository.crearMedidaBasura(id,medidasB, new CallBack() {
+            @Override
+            public void onSuccess(Object object) {
+                Log.d(TAG,object.toString());
+            }
+
+            @Override
+            public void onError(Object object) {
+                Log.e(TAG,object.toString());
+            }
+        });
+    }
 
     @Override protected void onDestroy() {
         super.onDestroy();
