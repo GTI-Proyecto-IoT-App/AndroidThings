@@ -1,10 +1,16 @@
 package com.example.raspberry_m5stack.repository.impl;
 
+import androidx.annotation.NonNull;
+
 import com.example.raspberry_m5stack.firebase.FirebaseReferences;
 import com.example.raspberry_m5stack.firebase.FirebaseRepository;
 import com.example.raspberry_m5stack.firebase.callback.CallBack;
 import com.example.raspberry_m5stack.model.MedidaBasura;
 import com.example.raspberry_m5stack.repository.MedidaBasuraRepository;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 
@@ -27,11 +33,25 @@ public class MedidaBasuraImpl extends FirebaseRepository implements MedidaBasura
         // cogemos el key del document
 
         if(medidaBasura!=null){
-            DocumentReference documentReference = medidaBasuraCollectionReference.document(id);
+            medidaBasuraCollectionReference.document(id).collection("mediciones").add(medidaBasura)
+            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    callback.onSuccess(SUCCESS);
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    callback.onError(null);
+                }
+            });
+            //DocumentReference documentReference = medidaBasuraCollectionReference.document(id);
 
 
             // intentara crear la medida y al terminar llamará al callback de on succes o error
-            fireStoreUpdateHasMap(documentReference, CAMPO_MESURA, medidaBasura, new CallBack() {
+
+            /*fireStoreUpdateHasMap(documentReference, CAMPO_MESURA, medidaBasura, new CallBack() {
                 @Override
                 public void onSuccess(Object object) {
                     callback.onSuccess(SUCCESS);
@@ -41,7 +61,7 @@ public class MedidaBasuraImpl extends FirebaseRepository implements MedidaBasura
                 public void onError(Object object) {
                     callback.onError(object);
                 }
-            });
+            });*/
         }else{
             callback.onError(FAIL);
         }
