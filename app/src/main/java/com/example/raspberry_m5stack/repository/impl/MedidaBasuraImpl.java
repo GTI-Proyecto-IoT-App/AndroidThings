@@ -13,6 +13,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.raspberry_m5stack.firebase.constants.Constant.FAIL;
 import static com.example.raspberry_m5stack.firebase.constants.Constant.SUCCESS;
@@ -65,5 +70,128 @@ public class MedidaBasuraImpl extends FirebaseRepository implements MedidaBasura
         }else{
             callback.onError(FAIL);
         }
+    }
+
+    // devuelve el tanto por ciento de los 4 contenedores (max 400%)
+    @Override
+    public void readLLenadoBasura(String id, final CallBack callBack) {
+        final int[] contMesuras = {4};
+
+        final double[] llenadoTotal = {0};
+
+        final Query queryPlastico = medidaBasuraCollectionReference.document(id).collection("mediciones")
+                .whereEqualTo("tipoMedida","plastico")
+                .orderBy("unixTime", Query.Direction.ASCENDING)
+                .limit(1);
+
+        final Query queryVidrio = medidaBasuraCollectionReference.document(id).collection("mediciones")
+                .whereEqualTo("tipoMedida","vidrio")
+                .orderBy("unixTime", Query.Direction.ASCENDING)
+                .limit(1);
+
+        final Query queryPapel = medidaBasuraCollectionReference.document(id).collection("mediciones")
+                .whereEqualTo("tipoMedida","papel")
+                .orderBy("unixTime", Query.Direction.ASCENDING)
+                .limit(1);
+
+        final Query queryOrganico = medidaBasuraCollectionReference.document(id).collection("mediciones")
+                .whereEqualTo("tipoMedida","organico")
+                .orderBy("unixTime", Query.Direction.ASCENDING)
+                .limit(1);
+
+
+        queryPapel.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    contMesuras[0]--;
+
+                    if(task.getResult()!=null){
+                        MedidaBasura m = task.getResult().getDocuments().get(0).toObject(MedidaBasura.class);
+                        if(m!=null){
+                            llenadoTotal[0] += m.getLlenado();
+                        }
+
+                    }
+
+
+                    if(contMesuras[0] == 0){
+                        callBack.onSuccess(llenadoTotal[0]);
+                    }
+
+                }
+            }
+        });
+
+        queryOrganico.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    contMesuras[0]--;
+
+                    if(task.getResult()!=null){
+                        MedidaBasura m = task.getResult().getDocuments().get(0).toObject(MedidaBasura.class);
+                        if(m!=null){
+                            llenadoTotal[0] += m.getLlenado();
+                        }
+
+                    }
+
+
+                    if(contMesuras[0] == 0){
+                        callBack.onSuccess(llenadoTotal[0]);
+                    }
+
+                }
+            }
+        });
+
+        queryVidrio.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    contMesuras[0]--;
+
+                    if(task.getResult()!=null){
+                        MedidaBasura m = task.getResult().getDocuments().get(0).toObject(MedidaBasura.class);
+                        if(m!=null){
+                            llenadoTotal[0] += m.getLlenado();
+                        }
+
+                    }
+
+
+                    if(contMesuras[0] == 0){
+                        callBack.onSuccess(llenadoTotal[0]);
+                    }
+
+                }
+            }
+        });
+
+        queryPlastico.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    contMesuras[0]--;
+
+                    if(task.getResult()!=null){
+                        MedidaBasura m = task.getResult().getDocuments().get(0).toObject(MedidaBasura.class);
+                        if(m!=null){
+                            llenadoTotal[0] += m.getLlenado();
+                        }
+
+                    }
+
+
+                    if(contMesuras[0] == 0){
+                        callBack.onSuccess(llenadoTotal[0]);
+                    }
+
+                }
+            }
+        });
+
+
     }
 }

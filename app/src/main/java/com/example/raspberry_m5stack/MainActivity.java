@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private MedidaBasuraImpl medidaBasuraRepository;
+    private ArduinoUart uart;
 
 
     private static final String DELIMITADOR_TIPO_DISPOSITIVO = "%";
@@ -59,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         //setContentView(R.layout.activity_main);
 
         medidaBasuraRepository = new MedidaBasuraImpl();
-        //Log.d(TAG, "Mandado a Arduino: D");
-        //uart.escribir("D");
+        uart = new ArduinoUart("leds llenado",9600);
+
         try {
             Log.i(Mqtt.TAG, "Conectando al broker " + Mqtt.broker);
             client = new MqttClient(Mqtt.broker, Mqtt.clientId,
@@ -166,18 +167,41 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         try {
-            JSONObject jsonObject = new JSONObject(message.toString());
-            String tipoDispositivo = jsonObject.getString("id").split(DELIMITADOR_TIPO_DISPOSITIVO)[1];
 
-            switch (tipoDispositivo){
-                case DISPOSITIVO_BASURA:
-                    addMesuraBasura(jsonObject);
-                    break;
+            if(topic.contains("dispositivo")){
+                JSONObject jsonObject = new JSONObject(message.toString());
+                String tipoDispositivo = jsonObject.getString("id").split(DELIMITADOR_TIPO_DISPOSITIVO)[1];
+
+                switch (tipoDispositivo){
+                    case DISPOSITIVO_BASURA:
+                        addMesuraBasura(jsonObject);
+                        break;
+                }
+            }else if(topic.equals("proyectoGTI2A/sonoff/POWER")){
+                obtenerLlenadoBasura();
             }
+
+
 
         }catch (JSONException err){
             Log.d("Error", err.toString());
         }
+    }
+
+    private void obtenerLlenadoBasura() {
+        //Log.d(TAG, "Mandado a Arduino: D");
+
+        medidaBasuraRepository.readLLenadoBasura("B4:E6:2D:97:B7:CD%basura", new CallBack() {
+            @Override
+            public void onSuccess(Object object) {
+                uart.escribir(String.valueOf(object));
+            }
+
+            @Override
+            public void onError(Object object) {
+
+            }
+        });
     }
 
     @Override

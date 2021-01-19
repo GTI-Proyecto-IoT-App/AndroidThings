@@ -5,4 +5,5 @@ import com.example.raspberry_m5stack.model.MedidaBasura;
 
 public interface MedidaBasuraRepository {
     void crearMedidaBasura(String id, MedidaBasura medidaBasura, CallBack callback);
+    void readLLenadoBasura(String id, CallBack callBack);
 }
