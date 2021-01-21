@@ -1,0 +1,191 @@
+{
+  "project_info": {
+    "project_number": "28696762518",
+    "firebase_url": "https://proyectoandroidiot.firebaseio.com",
+    "project_id": "proyectoandroidiot",
+    "storage_bucket": "proyectoandroidiot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28696762518:android:c1aa524eb9e84320430ab7",
+        "android_client_info": {
+          "package_name": "com.example.androidappgestionbasura"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28696762518-gke33apni8h2tj8vekn1cfjct214q5ph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidappgestionbasura",
+            "certificate_hash": "b9300a703834e7eb4934f11db616245712fa0165"
+          }
+        },
+        {
+          "client_id": "28696762518-heitv885mln6sl77jqqcaibk6jqkhjmk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidappgestionbasura",
+            "certificate_hash": "91718d4c6b084a730625baa2c9db8fd8b0b0d502"
+          }
+        },
+        {
+          "client_id": "28696762518-hivvl78ftno3td36ja97irn2h34jmpru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidappgestionbasura",
+            "certificate_hash": "81778a71e977cdf89419ed0ca1bc3407c2a71aec"
+          }
+        },
+        {
+          "client_id": "28696762518-j6s3rndhqvv900k6u1n98kdmhh8s8tul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidappgestionbasura",
+            "certificate_hash": "2503e63ac0c689fa84315b95b36830a439a13db5"
+          }
+        },
+        {
+          "client_id": "28696762518-pmtkd6kuin0iu2fq2akfblgfv56e33q6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidappgestionbasura",
+            "certificate_hash": "557e4bfc4113fd4f1a513ed742ac2c456927c1ee"
+          }
+        },
+        {
+          "client_id": "28696762518-t0rq700jg2fjqtem06aoum7b19seuh1f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.androidappgestionbasura",
+            "certificate_hash": "6377ce59c3add1a6b06d73ad563f876ca0649062"
+          }
+        },
+        {
+          "client_id": "28696762518-nhgo275af9u82uquc7lbtldq28ntarn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGbAnlo20dWI3JVy_o0PtEUdsI-4h4A1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28696762518-kviq562eo0nk06akh2c3q39p38ebssrp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28696762518:android:493d145fddd6cb02430ab7",
+        "android_client_info": {
+          "package_name": "com.example.androidthings.assistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28696762518-nhgo275af9u82uquc7lbtldq28ntarn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGbAnlo20dWI3JVy_o0PtEUdsI-4h4A1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28696762518-kviq562eo0nk06akh2c3q39p38ebssrp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28696762518:android:fb91575d8ee1317b430ab7",
+        "android_client_info": {
+          "package_name": "com.example.androidthings.doorbell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28696762518-nhgo275af9u82uquc7lbtldq28ntarn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGbAnlo20dWI3JVy_o0PtEUdsI-4h4A1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28696762518-kviq562eo0nk06akh2c3q39p38ebssrp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28696762518:android:5177410e27e8462b430ab7",
+        "android_client_info": {
+          "package_name": "com.example.raspberry_m5stack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28696762518-c5c3s7otl08d8ibm7eqok372469m8imf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.raspberry_m5stack",
+            "certificate_hash": "557e4bfc4113fd4f1a513ed742ac2c456927c1ee"
+          }
+        },
+        {
+          "client_id": "28696762518-d2aoo8tff1le8766lb5t3jdhf8ttgi32.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.raspberry_m5stack",
+            "certificate_hash": "b9300a703834e7eb4934f11db616245712fa0165"
+          }
+        },
+        {
+          "client_id": "28696762518-nhgo275af9u82uquc7lbtldq28ntarn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGbAnlo20dWI3JVy_o0PtEUdsI-4h4A1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28696762518-kviq562eo0nk06akh2c3q39p38ebssrp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
